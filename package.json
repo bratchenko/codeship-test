@@ -18,7 +18,9 @@
     "swig": "~0.13.5",
     "grunt": "~0.4.1",
     "grunt-requirejs": "~0.3.5",
-    "grunt-cli": "~0.1.8",
+    "grunt-cli": "~0.1.8"
+  },
+  "devDependencies": {
     "chai": "~1.6.0"
   }
 }

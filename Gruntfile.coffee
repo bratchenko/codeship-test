@@ -38,4 +38,4 @@ module.exports = (grunt) ->
             return done()
 
     # Top-level tasks
-    grunt.registerTask "build", ["prepare-build", "requirejs", "cleanup-build"]
+    grunt.registerTask "build", ["prepare-build", "cleanup-build"]
