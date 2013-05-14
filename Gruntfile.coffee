@@ -1,6 +1,7 @@
 module.exports = (grunt) ->
 
     fs = require 'fs'
+    _ = require 'underscore'
     exec = (require 'child_process').exec
 
     tmpBuildDir = "#{__dirname}/.build";
@@ -21,13 +22,30 @@ module.exports = (grunt) ->
                     modules: [
                         {name: "layout"}
                     ]
+        concat:
+            libs:
+                src: _.map([
+                        "jquery.min.js",
+                        "require.js",
+                        "*.js"
+                        ], (i)->
+                            'public/js/libs/' + i
+                    )
+                dest: "<%=deploy.buildDir%>/libs.js"
+
 
     grunt.loadNpmTasks "grunt-requirejs"
+    grunt.loadNpmTasks "grunt-contrib-concat"
+
+    grunt.loadTasks "./grunt/"
 
     grunt.registerTask "prepare-build", "Prepare build", ()->
-        if !fs.existsSync(tmpBuildDir)
+        done = this.async()
+        exec "rm -Rf #{tmpBuildDir.replace(/(["\s'$`\\])/g,'\\$1')}", (err, stdout, stderr)->
+            if err then return done(err)
             fs.mkdirSync(tmpBuildDir)
-        grunt.config.set("deploy.buildDir", tmpBuildDir)
+            grunt.config.set("deploy.buildDir", tmpBuildDir)
+            done()
 
     grunt.registerTask "cleanup-build", "Cleanup after build", ()->
         done = this.async()
@@ -37,5 +55,4 @@ module.exports = (grunt) ->
                 return done(false)
             return done()
 
-    # Top-level tasks
-    grunt.registerTask "build", ["prepare-build", "cleanup-build"]
+    grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "freeze-static", "cleanup-build"]

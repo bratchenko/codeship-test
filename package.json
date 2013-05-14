@@ -7,8 +7,8 @@
     "npm": "1.2.x"
   },
   "scripts": {
-    "postinstall": "./node_modules/grunt-cli/bin/grunt build",
-    "test": "mocha --compilers coffee:coffee-script"
+    "postinstall": "./node_modules/.bin/grunt build",
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script"
   },
   "dependencies": {
     "coffee-script": "~1.6.2",
@@ -18,7 +18,10 @@
     "swig": "~0.13.5",
     "grunt": "~0.4.1",
     "grunt-requirejs": "~0.3.5",
-    "grunt-cli": "~0.1.8"
+    "grunt-cli": "~0.1.8",
+    "borschik": "~0.3.0",
+    "async": "~0.2.8",
+    "grunt-contrib-concat": "~0.3.0"
   },
   "devDependencies": {
     "chai": "~1.6.0"

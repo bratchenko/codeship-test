@@ -5,10 +5,22 @@ app = module.exports = express()
 global.config = require "#{__dirname}/config"
 
 app.configure ()->
+    staticMappings = {}
+    if global.config.env == 'production'
+        staticMappings = JSON.parse((require 'fs').readFileSync "#{__dirname}/public/opt.json")
+
     app.engine 'html', (require "consolidate").swig
     (require 'swig').init(
         root: "#{__dirname}/tpl"
         allowErrors: true
+        filters:
+            staticUri: (input)->
+                if staticMappings['public/opt' + input]
+                    return staticMappings['public/opt' + input]
+                if staticMappings['public' + input]
+                    return staticMappings['public' + input]
+                else
+                    return input
     );
     app.set 'view engine', 'html'
     app.set 'views', "#{__dirname}/tpl"

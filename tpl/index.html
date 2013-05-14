@@ -3,15 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Codeship test</title>
-    <link rel="stylesheet" media="screen" href="/css/screen.css">
+    <link rel="stylesheet" media="screen" href="{{'/css/screen.css'|staticUri}}">
 </head>
 <body>
 
 <h1>Hello world!</h1>
 
+<img src="{{'/img/hello-world.jpg'|staticUri}}"/>
+
 {%if config.env == "production"%}
-<script src="{{packedJs.libs}}"></script>
-<script src="{{packedJs.layout}}"></script>
+<script src="{{'/js/libs.js'|staticUri}}"></script>
+<script src="{{'/js/layout.js'|staticUri}}"></script>
 {%else%}
 <script src="/js/libs/jquery.min.js"></script>
 <script src="/js/libs/require.js"></script>

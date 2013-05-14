@@ -1,0 +1,18 @@
+{
+    "paths": {
+        "./public/opt/img": "/opt/img/",
+        "./public/opt/css": "/opt/css/",
+        "./public/opt/js": "/opt/js/",
+        "./build/img/": "/opt/img/"
+    },
+    "freeze_paths" : {
+        "public/img": "../opt/img",
+        "public/opt/css": "./",
+        "public/opt/js": "./",
+        "public/opt/tpl": "./",
+        ".build/img": "../../public/opt/img"
+    },
+    "follow_symlinks" : {
+        ".build/img": true
+    }
+}

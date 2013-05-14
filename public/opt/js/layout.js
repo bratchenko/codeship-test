@@ -1,0 +1,1 @@
+define("modules/layout",[],function(){return{init:function(){$(function(){$("body").append($("<h2>I'm alive!</h2><img src='"+"/opt/img/p0ad8vichN-7mSi27z9dAbpQA38.jpg"+"'>"))})}}}),require(["modules/layout"],function(e){e.init()}),define("layout",function(){});
