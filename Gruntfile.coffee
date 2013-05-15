@@ -65,14 +65,11 @@ module.exports = (grunt) ->
                 return done(false)
             return done()
 
-    grunt.registerTask "find-compass", "Find compass in system", ()->
+    grunt.registerTask "add-gem-path", "Add gem executable directory to path", ()->
         done = this.async()
-        exec "uname -a", (err, stdout, stderr)->
-            console.log("!!!Uname: ", stdout, stderr)
-            exec "gem environment", (err, stdout, stderr)->
-                console.log("!!!GEM ENV: ", stdout, stderr)
-                exec "echo $PATH", (err, stdout, stderr)->
-                    console.log("!!!Path: ", stdout, stderr)
-                    done()
+        exec "gem environment", (err, stdout, stderr)->
+            gemDir = stdout.match(/EXECUTABLE DIRECTORY: (.*)/)[1].replace(/[\r\n]+/, '')
+            exec "export PATH=$PATH:#{gemDir}", (err, stdout, stderr)->
+                done()
 
-    grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "find-compass", "compass", "cleanup-build"]
+    grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "add-gem-path", "compass", "cleanup-build"]
