@@ -70,6 +70,10 @@ module.exports = (grunt) ->
         exec "gem environment", (err, stdout, stderr)->
             gemDir = stdout.match(/EXECUTABLE DIRECTORY: (.*)/)[1].replace(/[\r\n]+/, '')
             exec "export PATH=$PATH:#{gemDir}", (err, stdout, stderr)->
-                done()
+                exec "echo $PATH", (err, stdout, stderr)->
+                    console.log("PATH ", stdout)
+                    exec "gem environment", (err, stdout, stderr)->
+                        console.log("GEM ENV ", stdout)
+                        done()
 
     grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "add-gem-path", "compass", "cleanup-build"]
