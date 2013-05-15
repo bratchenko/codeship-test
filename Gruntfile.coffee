@@ -67,10 +67,12 @@ module.exports = (grunt) ->
 
     grunt.registerTask "find-compass", "Find compass in system", ()->
         done = this.async()
-        exec "locate 'bin/compass'", (err, stdout, stderr)->
-            console.log("!!!Locate compass: ", stdout, stderr)
-            exec "which compass", (err, stdout, stderr)->
-                console.log("!!!Which compass: ", stdout, stderr)
-                done()
+        exec "uname -a", (err, stdout, stderr)->
+            console.log("!!!Uname: ", stdout, stderr)
+            exec "gem environment", (err, stdout, stderr)->
+                console.log("!!!GEM ENV: ", stdout, stderr)
+                exec "echo $PATH", (err, stdout, stderr)->
+                    console.log("!!!Path: ", stdout, stderr)
+                    done()
 
     grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "find-compass", "compass", "cleanup-build"]
