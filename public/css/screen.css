@@ -1,3 +1,65 @@
+/* line 1, ../sass/screen.sass */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 5, ../sass/screen.sass */
+html, body {
+  height: 100%;
+}
+
+/* line 7, ../sass/screen.sass */
+html {
+  background: url(../img/bg.jpg);
+}
+
+/* line 9, ../sass/screen.sass */
 body {
-    background: url('../img/bg.png');
+  background: url(../img/bg-top1.png) no-repeat 56% 0;
+  font-family: "Cuprum", Arial, Tahoma, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  color: #231f20;
+  line-height: 1;
+}
+
+/* line 19, ../sass/screen.sass */
+a img, fieldset {
+  border: none;
+}
+
+/* line 21, ../sass/screen.sass */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 24, ../sass/screen.sass */
+p {
+  line-height: 1.2;
+}
+
+/* line 26, ../sass/screen.sass */
+li {
+  list-style: none;
+}
+
+/* line 28, ../sass/screen.sass */
+textarea, button, select, input {
+  border: none;
+  outline: none;
+  font-family: "Cuprum", Arial, Tahoma, sans-serif;
+}
+
+/* line 32, ../sass/screen.sass */
+button {
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* line 35, ../sass/screen.sass */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
 }

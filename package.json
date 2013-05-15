@@ -23,7 +23,8 @@
     "async": "~0.2.8",
     "grunt-contrib-concat": "~0.3.0",
     "chai": "~1.6.0",
-    "mocha": "~1.9.0"
+    "mocha": "~1.9.0",
+    "grunt-contrib-compass": "~0.2.0"
   },
   "devDependencies": {}
 }

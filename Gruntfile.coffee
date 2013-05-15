@@ -32,10 +32,20 @@ module.exports = (grunt) ->
                             'public/js/libs/' + i
                     )
                 dest: "<%=deploy.buildDir%>/libs.js"
+        compass:
+            dist:
+                options:
+                    httpPath: "/"
+                    sassDir: "public/sass"
+                    cssDir: "public/css"
+                    imagesDir: "public/img"
+                    relativeAssets: true
+
 
 
     grunt.loadNpmTasks "grunt-requirejs"
     grunt.loadNpmTasks "grunt-contrib-concat"
+    grunt.loadNpmTasks "grunt-contrib-compass"
 
     grunt.loadTasks "./grunt/"
 
@@ -55,4 +65,4 @@ module.exports = (grunt) ->
                 return done(false)
             return done()
 
-    grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "freeze-static", "cleanup-build"]
+    grunt.registerTask "build", ["prepare-build", "requirejs", "concat", "compass", "cleanup-build"]
